@@ -38,46 +38,56 @@ const InfoModal: React.FC<InfoModalProps> = ({
         <Close />
       </IconButton>
       <DialogContent dividers className='h-[615px]'>
-        <div className='flex flex-col items-center'>
-          <img
-            src={character.image}
-            alt={character.name}
-            className='w-48 h-48 object-cover rounded-xl mb-4'
-          />
-          <p>
-            <strong>Species:</strong> {character.species}
-          </p>
-          <p>
-            <strong>Gender:</strong> {character.gender}
-          </p>
-          <p>
-            <strong>House:</strong> {character.house}
-          </p>
-          <p>
-            <strong>Date of Birth:</strong> {character.dateOfBirth}
-          </p>
-          <p>
-            <strong>Ancestry:</strong> {character.ancestry}
-          </p>
-          <p>
-            <strong>Eye Colour:</strong> {character.eyeColour}
-          </p>
-          <p>
-            <strong>Hair Colour:</strong> {character.hairColour}
-          </p>
-          <p>
-            <strong>Wand:</strong> {character.wand.wood} wood,{' '}
-            {character.wand.core} core, {character.wand.length} inches
-          </p>
-          <p>
-            <strong>Patronus:</strong> {character.patronus}
-          </p>
-          <p>
-            <strong>Actor:</strong> {character.actor}
-          </p>
-          <p>
-            <strong>Alive:</strong> {character.alive ? 'Yes' : 'No'}
-          </p>
+        <div className='grid grid-cols-1 sm:grid-cols-2 gap-4 '>
+          <div className='flex flex-col'>
+            <p className='text-pretty my-2'>
+              <strong>Species:</strong> {character.species}
+            </p>
+            <p className='text-pretty my-2'>
+              <strong>Gender:</strong> {character.gender}
+            </p>
+            <p className='text-pretty my-2'>
+              <strong>House:</strong> {character.house}
+            </p>
+            <p className='text-pretty my-2'>
+              <strong>Date of Birth:</strong> {character.dateOfBirth}
+            </p>
+            <p className='text-pretty my-2'>
+              <strong>Ancestry:</strong> {character.ancestry}
+            </p>
+            <p className='text-pretty my-2'>
+              <strong>Eye Colour:</strong> {character.eyeColour}
+            </p>
+            <p className='text-pretty my-2'>
+              <strong>Hair Colour:</strong> {character.hairColour}
+            </p>
+            <p className='text-pretty my-2'>
+              <strong>Wand:</strong> {character.wand.wood} wood,{' '}
+              {character.wand.core} core, {character.wand.length} inches
+            </p>
+            <p className='text-pretty my-2'>
+              <strong>Patronus:</strong> {character.patronus ? (character.patronus) : 'N/A'}
+            </p>
+            <p className='text-pretty my-2'>
+              <strong>Actor:</strong> {character.actor}
+            </p>
+            <p className='text-pretty my-2'>
+              <strong>Alive:</strong> {character.alive ? 'Yes' : 'No'}
+            </p>
+          </div>
+          <div>
+            {character.image ? (
+              <img
+                src={character.image}
+                alt={character.name}
+                className='w-full h-full object-cover mr-2 my-2 rounded-xl'
+              />
+            ) : (
+              <div className='w-full h-full object-cover mr-2 my-2 bg-slate-600 rounded-xl'>
+                No Image Available
+              </div>
+            )}
+          </div>
         </div>
       </DialogContent>
 
