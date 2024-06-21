@@ -5,6 +5,16 @@
 } */
 
 .mainContainer {
-    background-color: #090923;
+    background-color: white;
     min-height: 100vh;
+    position: relative;
 }
+
+.landing {
+  z-index: 10;
+  position: sticky;
+  top: 0;
+}
+
+/* top-0 sticky bg-[#5d5d66] */
+/*  realtive z-10 */
