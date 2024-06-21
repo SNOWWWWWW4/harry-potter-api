@@ -9,11 +9,18 @@ import Image from 'next/image';
 import Lenis from 'lenis';
 import { MotionValue, motion, useScroll, useTransform } from 'framer-motion';
 
+interface TableProps {
+  allCharNames: IPotterCharacter[];
+  handleOpenModal: (character: IPotterCharacter) => void;
+  scrollYProgress: MotionValue<number>;
+}
+
+
 export default function Home() {
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [allCharNames, setAllCharNames] = useState<IPotterCharacter[]>([]);
-  const [selectedCharacter, setSelectedCharacter] =
-    useState<IPotterCharacter | null>(null);
+  const [selectedCharacter, setSelectedCharacter] = useState<IPotterCharacter | null>(null);
   const container = useRef<HTMLElement>(null);
 
   const saveData = async () => {
@@ -45,13 +52,7 @@ export default function Home() {
     requestAnimationFrame(raf);
   }, []);
 
-  useEffect(() => {
-    if (isModalOpen) {
-      document.body.classList.add('overflow-hidden');
-    } else {
-      document.body.classList.remove('overflow-hidden');
-    }
-  }, [isModalOpen]);
+ 
 
   return (
     <main className={styles.mainContainer} ref={container}>
@@ -74,11 +75,10 @@ export default function Home() {
   );
 }
 
-const Landing = ({
-  scrollYProgress,
-}: {
-  scrollYProgress: MotionValue<number>;
-}) => {
+
+// Landing section
+const Landing = ({scrollYProgress }: { scrollYProgress: MotionValue<number> }) => {
+
   const scale = useTransform(scrollYProgress, [0, 1], [1, 0.8]);
   const rotate = useTransform(scrollYProgress, [0, 1], [0, -5]);
 
@@ -98,17 +98,9 @@ const Landing = ({
   );
 };
 
-interface TableProps {
-  allCharNames: IPotterCharacter[];
-  handleOpenModal: (character: IPotterCharacter) => void;
-  scrollYProgress: MotionValue<number>;
-}
 
-const Table = ({
-  allCharNames,
-  handleOpenModal,
-  scrollYProgress,
-}: TableProps) => {
+// List of characters section
+const Table = ({ allCharNames, handleOpenModal, scrollYProgress }: TableProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const charsPerPage = 8;
 
@@ -171,12 +163,10 @@ const Table = ({
             </div>
           ))
         ) : (
-          <div>
-            <h1>Loading...</h1>
+          <div className='flex flex-col justify-center items-center bg-black min-h-screen'>
+            <h1 className='text-white'>Loading...</h1>
           </div>
         )}
-
-        {/* Pagination Controls */}
       </div>
       <div className='flex justify-center items-center w-full mt-2'>
         <Button

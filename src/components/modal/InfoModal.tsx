@@ -16,11 +16,7 @@ interface InfoModalProps {
   character: IPotterCharacter;
 }
 
-const InfoModal: React.FC<InfoModalProps> = ({
-  isModalOpen,
-  setIsModalOpen,
-  character,
-}) => {
+const InfoModal: React.FC<InfoModalProps> = ({ isModalOpen, setIsModalOpen, character }) => {
   return (
     <Dialog open={isModalOpen} fullWidth={true} maxWidth={'md'}>
       <DialogTitle>{character.name}</DialogTitle>
